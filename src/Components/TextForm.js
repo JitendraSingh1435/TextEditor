@@ -5,30 +5,56 @@ export default function TextForm(props) {
 
     const handleUpClick = () => {
         // console.log("Upper case button clicked" + text);
-        let newUpText = text.toUpperCase();
-        setText(newUpText);
-        props.showAlert("Converted to UPPER CASE!", "success");
+        if(text.length > 0){
+
+            let newUpText = text.toUpperCase();
+            setText(newUpText);
+            props.showAlert("Converted to UPPER CASE!", "success");
+        }else{
+            props.showAlert("Please enter something. Text box is empty!", "warning");
+
+        }
         
     }
 
     const handleDownClick = () => {
-        let newDownText = text.toLowerCase();
-        setText(newDownText);
-        props.showAlert("Converted to lower case!", "success");
+        if(text.length > 0){
+
+            let newDownText = text.toLowerCase();
+            setText(newDownText);
+            props.showAlert("Converted to lower case!", "success");
+            
+        }else{
+            props.showAlert("Please enter something. Text box is empty!", "warning");
+
+        }
 
     } 
 
     const handleClear = () => {
-        // let newDownText = text.toLowerCase();
-        setText("");
-        props.showAlert("Text Cleared!", "success");
+        if(text.length > 0){
+
+            // let newDownText = text.toLowerCase();
+            setText("");
+            props.showAlert("Text Cleared!", "success");
+        }else{
+            props.showAlert("Please enter something. Text box is empty!", "warning");
+
+        }
 
     }
 
     const handleRevClick = () => {
-        let newRev = text.split('').reverse().join('')
-        setText(newRev);
-        props.showAlert("Text is reversed!", "success");
+        if(text.length > 0){
+
+            let newRev = text.split('').reverse().join('')
+            setText(newRev);
+            props.showAlert("Text is reversed!", "success");
+            
+        }else{
+            props.showAlert("Please enter something. Text box is empty!", "warning");
+
+        }
 
     }
 
@@ -38,17 +64,32 @@ export default function TextForm(props) {
     }
 
     const handleExtraSpaces = () => {
-        let newText = text.split(/[ ]+/);
-        setText(newText.join(" "));
-        props.showAlert("Extra speces has been removed!", "success");
+
+        if(text.length > 0){
+
+            let newText = text.split(/[ ]+/);
+            setText(newText.join(" "));
+            props.showAlert("Extra speces has been removed!", "success");
+           
+        }else{
+            props.showAlert("Please enter something. Text box is empty!", "warning");
+
+        }
 
     }
 
     const handleCopy = () => {
-        let newtext = document.getElementById("myBox");
-        newtext.select();
-        navigator.clipboard.writeText(newtext.value);
-        props.showAlert("Text has copied to clipboard!", "success");
+        if(text.length > 0){
+
+            let newtext = document.getElementById("myBox");
+            newtext.select();
+            navigator.clipboard.writeText(newtext.value);
+            props.showAlert("Text has copied to clipboard!", "success");
+        
+        }else{
+            props.showAlert("Please enter something. Text box is empty!", "warning");
+
+        }
 
     }
 

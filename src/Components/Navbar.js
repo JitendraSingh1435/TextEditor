@@ -6,6 +6,7 @@ export default function Navbar(props) {
         <div>
             <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
                 <div className="container-fluid">
+                    <a className='logp' href='/'>{props.icon}</a>
                     <a className="navbar-brand" href="/">{props.title}</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -25,8 +26,21 @@ export default function Navbar(props) {
                             <button className="btn btn-outline-primary" type="submit">Search</button>
                         </form>
                         <div className={`form-check form-switch mx-3 text-${props.mode === 'light' ? '#212529' : 'light'}`}>
-                            <input className="form-check-input" type="checkbox" onClick={props.toggleMode} role="switch" id="flexSwitchCheckDefault"/>
-                                <label className="form-check-label-light" htmlFor="flexSwitchCheckDefault"> Dark Mode </label>
+                            <input className="form-check-input" type="checkbox" onClick={props.toggleMode} role="switch" id="flexSwitchCheckDefault" />
+                            <label className="form-check-label-light" htmlFor="flexSwitchCheckDefault"> Dark Mode </label>
+                        </div>
+                        <div className="dropdown">
+                            <a className="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Modes
+                            </a>
+
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li> <button type="button" className="btn btn-danger btn-circle" ></button></li>
+                                <li><button type="button" className="btn btn-warning"></button></li>
+                                <li><button type="button" className="btn btn-success"></button></li>
+                                <li><button type="button" className="btn btn-primary"></button></li>
+                                <li><button type="button" className="btn btn-info"></button></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
