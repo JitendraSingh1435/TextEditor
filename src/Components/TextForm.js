@@ -7,21 +7,29 @@ export default function TextForm(props) {
         // console.log("Upper case button clicked" + text);
         let newUpText = text.toUpperCase();
         setText(newUpText);
+        props.showAlert("Converted to UPPER CASE!", "success");
+        
     }
 
     const handleDownClick = () => {
         let newDownText = text.toLowerCase();
         setText(newDownText);
-    }
+        props.showAlert("Converted to lower case!", "success");
+
+    } 
 
     const handleClear = () => {
         // let newDownText = text.toLowerCase();
         setText("");
+        props.showAlert("Text Cleared!", "success");
+
     }
 
     const handleRevClick = () => {
         let newRev = text.split('').reverse().join('')
         setText(newRev);
+        props.showAlert("Text is reversed!", "success");
+
     }
 
     const handleOnChange = (event) => {
@@ -32,12 +40,16 @@ export default function TextForm(props) {
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra speces has been removed!", "success");
+
     }
 
     const handleCopy = () => {
         let newtext = document.getElementById("myBox");
         newtext.select();
         navigator.clipboard.writeText(newtext.value);
+        props.showAlert("Text has copied to clipboard!", "success");
+
     }
 
     const [text, setText] = useState("")
