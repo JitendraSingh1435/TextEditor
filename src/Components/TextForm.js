@@ -19,17 +19,17 @@ export default function TextForm(props) {
         setText("");
     }
 
-    const handleRevClick =()=> {
+    const handleRevClick = () => {
         let newRev = text.split('').reverse().join('')
         setText(newRev);
-     }
+    }
 
     const handleOnChange = (event) => {
         // console.log("On Change");
         setText(event.target.value);
     }
 
-    const handleExtraSpaces = ()=>{
+    const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
     }
@@ -45,7 +45,7 @@ export default function TextForm(props) {
 
     return (
         <>
-            <div>
+            <div className={`text-${props.mode === 'light' ? '#212529' : 'light'}`}>
                 <br />
                 <h3>{props.heading}</h3>
                 <div>
@@ -59,13 +59,16 @@ export default function TextForm(props) {
                 <button className="btn btn-primary my-3 mx-3" onClick={handleExtraSpaces}> Remove Extra Spaces </button>
 
             </div>
-
-            <div className="container my-3">
+            <div className={`container my-3 text-${props.mode === 'light' ? '#212529' : 'light'}`}>
+                <br />
+                <hr />
                 <h2>Your Text Summary</h2>
-                <p>Your have written <b> {text.split(' ').length-1} </b> words and <b> {text.length}</b> characters.</p>
+                <p>Your have written <b> {text.split(' ').length - 1} </b> words and <b> {text.length}</b> characters.</p>
                 <p>Estimated Reading Time - {0.008 * text.split(' ').length - 0.008} </p>
+                <br />
+                <hr />
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length > 0 ? text : "Enter something in the text box above for preview. "}</p>
             </div>
         </>
     )
