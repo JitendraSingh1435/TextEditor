@@ -84,6 +84,7 @@ export default function TextForm(props) {
             let newtext = document.getElementById("myBox");
             newtext.select();
             navigator.clipboard.writeText(newtext.value);
+            document.getSelection().removeAllRanges(); 
             props.showAlert("Text has copied to clipboard!", "success");
         
         }else{
@@ -98,30 +99,30 @@ export default function TextForm(props) {
 
     return (
         <>
-            <div className={`text-${props.mode === 'light' ? '#212529' : 'light'}`}>
+            <div className={`text-${props.finalMode === 'light' ? '#212529' : 'light'}`}>
                 <br />
-                <h3>{props.heading}</h3>
+                <h1>{props.heading}</h1>
                 <div>
                     <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-primary my-3" onClick={handleUpClick}> Convert To Uppercase</button>
-                <button className="btn btn-primary my-3 mx-3" onClick={handleDownClick}> Convert To LowerCase</button>
-                <button className="btn btn-primary my-3" onClick={handleRevClick}> Reverse The Input</button>
-                <button className="btn btn-primary my-3 mx-3" onClick={handleClear}> Clear Text </button>
-                <button className="btn btn-primary my-3" onClick={handleCopy}> Copy Text </button>
-                <button className="btn btn-primary my-3 mx-3" onClick={handleExtraSpaces}> Remove Extra Spaces </button>
+                <button disabled={text.length === 0} className={`btn btn-${props.finalMode === 'light' ? 'primary' : 'light'}  my-3 mx-3`} onClick={handleUpClick}> Convert To Uppercase</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.finalMode === 'light' ? 'primary' : 'light'} my-3 `} onClick={handleDownClick}> Convert To LowerCase</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.finalMode === 'light' ? 'primary' : 'light'} my-3 mx-3`} onClick={handleRevClick}> Reverse The Input</button>
+                <button disabled={text.length === 0} className={`btn btn-${props.finalMode === 'light' ? 'primary' : 'light'} my-3`} onClick={handleClear}> Clear Text </button>
+                <button disabled={text.length === 0} className={`btn btn-${props.finalMode === 'light' ? 'primary' : 'light'} my-3 mx-3`} onClick={handleCopy}> Copy Text </button>
+                <button disabled={text.length === 0} className={`btn btn-${props.finalMode === 'light' ? 'primary' : 'light'} my-3`} onClick={handleExtraSpaces}> Remove Extra Spaces </button>
 
             </div>
-            <div className={`container my-3 text-${props.mode === 'light' ? '#212529' : 'light'}`}>
+            <div className={`container my-3 text-${props.finalMode === 'light' ? '#212529' : 'light'}`}>
                 <br />
                 <hr />
                 <h2>Your Text Summary</h2>
-                <p>Your have written <b> {text.split(' ').length - 1} </b> words and <b> {text.length}</b> characters.</p>
-                <p>Estimated Reading Time - {0.008 * text.split(' ').length - 0.008} </p>
+                <h6>Your have written <b> {text.split(' ').filter((element)=>{return element.length !==0}).length} </b> words and <b> {text.length}</b> characters.</h6>
+                <h6>Estimated Reading Time - {0.008 * text.split(' ').length - 0.008} </h6>
                 <br />
                 <hr />
                 <h2>Preview</h2>
-                <p>{text.length > 0 ? text : "Enter something in the text box above for preview. "}</p>
+                <p>{text.length > 0 ? text : "Nothing for preview! "}</p>
             </div>
         </>
     )
